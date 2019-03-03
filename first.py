@@ -286,8 +286,8 @@ def window5():
     rez2 = 'Результати сходяться' if z1 == z2 else 'Помилка в обчисленні'
 
     def but():
-        Label(slave, text=rez1, font="Arial 12", fg='red').grid(column=0, row=3, sticky=W, columnspan=2)
-        Label(slave, text=rez2, font="Arial 12", fg='red').grid(column=0, row=9, sticky=W, columnspan=2)
+        Label(slave, text=rez1, font="Arial 12", fg='green').grid(column=0, row=3, sticky=W, columnspan=2)
+        Label(slave, text=rez2, font="Arial 12", fg='green').grid(column=0, row=9, sticky=W, columnspan=2)
 
     lf1 = LabelFrame(slave, text='Множина D', font='Arial 12')
     lf2 = LabelFrame(slave, text='Множина Z', font='Arial 12')
@@ -304,7 +304,7 @@ def window5():
 
     Label(lf2, text='Z(авторський алгоритм) = {}'.format(z1), font="Arial 14", justify=LEFT)\
         .grid(column=0, row=7, sticky=W, columnspan=2)
-    Label(lf2, text='Z(алгоритм Python) = {}'.format(z2), font="Arial 14", justify=LEFT)\
+    Label(lf2, text='Z(алгоритм Python (A & B)) = {}'.format(z2), font="Arial 14", justify=LEFT)\
         .grid(column=0, row=8, sticky=W, columnspan=2)
     Label(slave, text='   ').grid(column=2, row=2, rowspan=2)
     Label(slave, text='\t').grid(column=0, row=11)
