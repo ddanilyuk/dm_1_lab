@@ -277,14 +277,14 @@ def window5():
     f3 = open('file3.txt', 'r')
     f4 = open('file4.txt', 'r')
 
-    D1 = f2.read()
-    D2 = f3.read()
-    Z1 = f4.read()
-    Z2 = zad_alg.func_3(A, B)
+    d1 = f2.read()
+    d2 = f3.read()
+    z1 = f4.read()
+    z2 = zad_alg.func_3(A, B)
 
-    # todo edit rez_2
-    rez1 = 'Результати сходяться' if D1 == D2 else 'Помилка в обчисленні'
-    rez2 = 'Результати сходяться' if Z1 == Z2 else 'Помилка в обчисленні'
+    # todo edit rez_2 or z2
+    rez1 = 'Результати сходяться' if d1 == d2 else 'Помилка в обчисленні'
+    rez2 = 'Результати сходяться' if z1 == z2 else 'Помилка в обчисленні'
 
     def but():
         Label(slave, text=rez1, font="Arial 12", fg='red').grid(column=0, row=3, sticky=W, columnspan=2)
@@ -296,16 +296,16 @@ def window5():
     lf2.grid(column=0, row=7, sticky=W, columnspan=2, rowspan=2)
 
     Label(slave, text='Результати обчислень', font='Arial 14 bold').grid(column=0, row=0, columnspan=2)
-    Label(lf1, text='D(заданий алгоритм) = A & (A - (A - B))) | C =\n\t\t= {}'.format(D1),
+    Label(lf1, text='D(заданий алгоритм) = A & (A - (A - B))) | C =\n\t\t= {}'.format(d1),
           font="Arial 14", justify=LEFT)\
         .grid(column=0, row=1, sticky=W, columnspan=2)
-    Label(lf1, text='D(спрощений алгоритм) = (A & B) | C = {}'.format(D2), font="Arial 14", justify=LEFT)\
+    Label(lf1, text='D(спрощений алгоритм) = (A & B) | C = {}'.format(d2), font="Arial 14", justify=LEFT)\
         .grid(column=0, row=2, sticky=W, columnspan=2)
     Label(slave, text='\t').grid(column=0, row=6, sticky=W, columnspan=2)
 
-    Label(lf2, text='Z(авторський алгоритм) = {}'.format(Z1), font="Arial 14", justify=LEFT)\
+    Label(lf2, text='Z(авторський алгоритм) = {}'.format(z1), font="Arial 14", justify=LEFT)\
         .grid(column=0, row=7, sticky=W, columnspan=2)
-    Label(lf2, text='Z(алгоритм Python) = {}'.format(Z2), font="Arial 14", justify=LEFT)\
+    Label(lf2, text='Z(алгоритм Python) = {}'.format(z2), font="Arial 14", justify=LEFT)\
         .grid(column=0, row=8, sticky=W, columnspan=2)
     Label(slave, text='   ').grid(column=2, row=2, rowspan=2)
     Label(slave, text='\t').grid(column=0, row=11)
@@ -320,8 +320,11 @@ root.minsize(680, 450)
 # menubar
 menubar = Menu(root)
 filemenu = Menu(menubar, tearoff=0)
-filemenu.add_command(label="Window2", command=window2)
-filemenu.add_command(label="Window_my", command=window3)
+filemenu.add_command(label="Window_2", command=window2)
+filemenu.add_command(label="Window_3", command=window3)
+filemenu.add_command(label="Window_4", command=window4)
+filemenu.add_command(label="Window_5", command=window5)
+
 menubar.add_cascade(label="Windows", menu=filemenu)
 root.config(menu=menubar)
 
@@ -378,7 +381,6 @@ U = set()
 but_OK = Button(root, text='Згенерувати множини', font='Arial 12', command=generabc)
 but_OK.grid(column=1, row=9, columnspan=4)
 
-open('Результат.txt', 'wb').close()
 
 label_vyvid = Label(root, text='A = {}\n'
                                'B = {}\n'
