@@ -260,7 +260,7 @@ def window4():
     but.grid(column=1, row=3)
     but.bind("<Button-1>", but_disable)
 
-    photo = PhotoImage(file="photo_2_v2.png")
+    photo = PhotoImage(file="photo_2.png")
     photo_but = Button(slave_2, activebackground="green")
     photo_but.config(image=photo, width="700", height="90")
     photo_but.grid(column=0, row=5, columnspan=2)
