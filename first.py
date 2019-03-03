@@ -119,26 +119,18 @@ def vypadkovo():
 
 
 def save_to_file_2(event):
-    with open("file1.txt", 'w') as f:
+    with open("file2.txt", 'w') as f:
         f.write(str(event))
 
 
 def save_to_file_3(event):
-    with open("file2.txt", 'w') as f:
+    with open("file3.txt", 'w') as f:
         f.write(str(event))
 
 
 def save_to_file_4(event):
-    with open("file2.txt", 'w') as f:
+    with open("file4.txt", 'w') as f:
         f.write(str(event))
-
-
-def check():
-    global checker
-    checker = 1
-
-
-checker = 0
 
 
 def window2():
@@ -154,7 +146,7 @@ def window2():
                        '1) (A - B) = {f1}\n'
                        '2) (A - (A - B)) = {f2}\n'
                        '3) (A & (A - (A - B))) = {f3}\n'
-                       '4) (A & (A - (A - B))) | C  = {rez}\n\n'
+                       '4) (A & (A - (A - B))) | C)  = {rez}\n\n'
                        'Відповідь: {rez}'
               .format(
                     f1=(A - B),
@@ -183,7 +175,6 @@ def window2():
     but = Button(slave, text='Зберегти в файл', font='Arial 12')
 
     but.grid(column=1, row=3)
-    print(checker)
 
     but.bind("<Button-1>", save_to_file_2(zad_alg.func_1(A, B, C)))
     but.bind("<Button-1>", but_disable)
@@ -192,7 +183,6 @@ def window2():
     photo_but = Button(slave, activebackground="green")
     photo_but.config(image=photo, width="700", height="100")
     photo_but.grid(column=0, row=4, columnspan=2)
-    print(checker)
     slave.mainloop()
 
 
@@ -277,6 +267,52 @@ def window4():
     slave_2.mainloop()
 
 
+def window5():
+    slave = Toplevel(root)
+    slave.title('Результати')
+    slave.grab_set()
+    slave.focus_set()
+
+    f2 = open('file2.txt', 'r')
+    f3 = open('file3.txt', 'r')
+    f4 = open('file4.txt', 'r')
+
+    D1 = f2.read()
+    D2 = f3.read()
+    Z1 = f4.read()
+    Z2 = zad_alg.func_3(A, B)
+
+    # todo edit rez_2
+    rez1 = 'Результати сходяться' if D1 == D2 else 'Помилка в обчисленні'
+    rez2 = 'Результати сходяться' if Z1 == Z2 else 'Помилка в обчисленні'
+
+    def but():
+        Label(slave, text=rez1, font="Arial 12", fg='red').grid(column=0, row=3, sticky=W, columnspan=2)
+        Label(slave, text=rez2, font="Arial 12", fg='red').grid(column=0, row=9, sticky=W, columnspan=2)
+
+    lf1 = LabelFrame(slave, text='Множина D', font='Arial 12')
+    lf2 = LabelFrame(slave, text='Множина Z', font='Arial 12')
+    lf1.grid(column=0, row=1, sticky=W, columnspan=2, rowspan=2)
+    lf2.grid(column=0, row=7, sticky=W, columnspan=2, rowspan=2)
+
+    Label(slave, text='Результати обчислень', font='Arial 14 bold').grid(column=0, row=0, columnspan=2)
+    Label(lf1, text='D(заданий алгоритм) = A & (A - (A - B))) | C =\n\t\t= {}'.format(D1),
+          font="Arial 14", justify=LEFT)\
+        .grid(column=0, row=1, sticky=W, columnspan=2)
+    Label(lf1, text='D(спрощений алгоритм) = (A & B) | C = {}'.format(D2), font="Arial 14", justify=LEFT)\
+        .grid(column=0, row=2, sticky=W, columnspan=2)
+    Label(slave, text='\t').grid(column=0, row=6, sticky=W, columnspan=2)
+
+    Label(lf2, text='Z(авторський алгоритм) = {}'.format(Z1), font="Arial 14", justify=LEFT)\
+        .grid(column=0, row=7, sticky=W, columnspan=2)
+    Label(lf2, text='Z(алгоритм Python) = {}'.format(Z2), font="Arial 14", justify=LEFT)\
+        .grid(column=0, row=8, sticky=W, columnspan=2)
+    Label(slave, text='   ').grid(column=2, row=2, rowspan=2)
+    Label(slave, text='\t').grid(column=0, row=11)
+
+    Button(slave, text='Порівняти результати', font="Arial 12", command=but).grid(column=0, row=12)
+
+
 root = Tk()
 root.title('Задати множини')
 root.minsize(680, 450)
@@ -358,6 +394,6 @@ but_student.grid(column=5, row=0, sticky=E, rowspan=2, columnspan=2)
 Button(root, text='2 віджет', font='Arial 20', command=window2).grid(column=1, row=13, sticky=W)
 Button(root, text='3 віджет', font='Arial 20', command=window3).grid(column=1, row=13)
 Button(root, text='4 віджет', font='Arial 20', command=window4).grid(column=1, row=13, sticky=E)
-Button(root, text='5 віджет', font='Arial 20', command=window4).grid(column=3, row=13)
+Button(root, text='5 віджет', font='Arial 20', command=window5).grid(column=3, row=13)
 
 root.mainloop()
