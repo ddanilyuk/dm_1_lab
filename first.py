@@ -1,6 +1,5 @@
 from tkinter import *
 import random
-import pickle
 import zadanyy_algorytm as zad_alg
 
 
@@ -99,19 +98,6 @@ def generabc():
                                'U = {}'.format(A, B, C, U))
 
 
-# def gener_f(x):
-#     le = len(x)
-#     s = set()
-#     s.add(min(x))
-#     s.add(max(x))
-#
-#     for i in range(le - 2):
-#         s.add(random.randint(min(x), max(x)))
-#     while len(s) < le:
-#         s.add(random.randint(min(x), max(x)))
-#     return s
-
-
 def vruchnu():
     global A, B, C
     entA['state'] = NORMAL
@@ -132,17 +118,27 @@ def vypadkovo():
     lenC['state'] = NORMAL
 
 
-def save_to_file(x):
-    f = open('Результат.txt', 'ab')
-    pickle.dump(x, f)
-    f.close()
+def save_to_file_2(event):
+    with open("file1.txt", 'w') as f:
+        f.write(str(event))
 
 
-def save_to_file_v2(x):
-    f = open('Результат_2.txt', 'ab')
-    # pickle.dump(x, f)
-    f.write(x)
-    f.close()
+def save_to_file_3(event):
+    with open("file2.txt", 'w') as f:
+        f.write(str(event))
+
+
+def save_to_file_4(event):
+    with open("file2.txt", 'w') as f:
+        f.write(str(event))
+
+
+def check():
+    global checker
+    checker = 1
+
+
+checker = 0
 
 
 def window2():
@@ -185,14 +181,18 @@ def window2():
            command=show).grid(column=0, row=3)
 
     but = Button(slave, text='Зберегти в файл', font='Arial 12')
+
     but.grid(column=1, row=3)
-    but.bind("<Button-1>", save_to_file(zad_alg.func_1(A, B, C)))
+    print(checker)
+
+    but.bind("<Button-1>", save_to_file_2(zad_alg.func_1(A, B, C)))
     but.bind("<Button-1>", but_disable)
 
     photo = PhotoImage(file="photo.png")
     photo_but = Button(slave, activebackground="green")
     photo_but.config(image=photo, width="700", height="100")
     photo_but.grid(column=0, row=4, columnspan=2)
+    print(checker)
     slave.mainloop()
 
 
@@ -235,7 +235,7 @@ def window3():
 
     but = Button(slave, text='Зберегти в файл', font='Arial 12')
     but.grid(column=1, row=3)
-    but.bind("<Button-1>", save_to_file(zad_alg.func_1(A, B, C)))
+    but.bind("<Button-1>", save_to_file_3(zad_alg.func_1(A, B, C)))
     but.bind("<Button-1>", but_disable)
 
     photo = PhotoImage(file="photo.png")
@@ -250,15 +250,6 @@ def window4():
     slave_2.title('Обчислення 2 виразу')
     slave_2.grab_set()
     slave_2.focus_set()
-    # global Dx, Fx
-    # Dx = zad_alg.func_1(A, B, C)
-    # Fx = gener_f(zad_alg.func_1(A, B, C))
-
-    # def show():
-    #     lf = LabelFrame(slave_2, text="Генерування", font='Arial 12')
-    #     lf.grid(column=0, row=6, sticky=W, columnspan=4)
-    #     Label(lf, text='F = {d}\n'.format(d=Fx),
-    #           font='Arial 14', justify=LEFT, width=100, height=5).grid(column=0, row=6, sticky=W, columnspan=4)
 
     def show():
         lf = LabelFrame(slave_2, text="Розв'язок", font='Arial 12')
@@ -275,7 +266,7 @@ def window4():
         .grid(column=0, row=0, sticky=W, columnspan=2)
 
     Button(slave_2, text="Показати розв'язок", font="Arial 12", command=show).grid(column=0, row=3)
-    but = Button(slave_2, text='Зберегти в файл', font='Arial 12', command=save_to_file(zad_alg.func_2(A, B)))
+    but = Button(slave_2, text='Зберегти в файл', font='Arial 12', command=save_to_file_4(zad_alg.func_2(A, B)))
     but.grid(column=1, row=3)
     but.bind("<Button-1>", but_disable)
 
