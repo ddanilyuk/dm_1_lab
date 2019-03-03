@@ -164,7 +164,7 @@ def window2():
                     f1=(A - B),
                     f2=(A - (A - B)),
                     f3=(A & (A - (A - B))),
-                    rez=zad_alg.vyraz_1(A, B, C, U)),
+                    rez=zad_alg.func_1(A, B, C)),
               font='Arial 14', justify=LEFT).grid(column=0, row=5, sticky=W, columnspan=4)
 
     def but_disable(event):
@@ -178,7 +178,7 @@ def window2():
           font="Arial 14", justify=LEFT).grid(column=0, row=1, sticky=W, columnspan=3)
 
     Label(slave, text='Заданий вираз:\n'
-                      'D = (A & (A - (A - B)) | C) = {}\n'.format(zad_alg.vyraz_1(A, B, C, U)),
+                      'D = (A & (A - (A - B)) | C) = {}\n'.format(zad_alg.func_1(A, B, C)),
           font='Arial 14 bold').grid(column=0, row=0, sticky=W, columnspan=2)
 
     Button(slave, text="Показати розв'язок", font="Arial 12",
@@ -186,7 +186,7 @@ def window2():
 
     but = Button(slave, text='Зберегти в файл', font='Arial 12')
     but.grid(column=1, row=3)
-    but.bind("<Button-1>", save_to_file(zad_alg.vyraz_1(A, B, C, U)))
+    but.bind("<Button-1>", save_to_file(zad_alg.func_1(A, B, C)))
     but.bind("<Button-1>", but_disable)
 
     photo = PhotoImage(file="photo.png")
@@ -211,9 +211,9 @@ def window3():
                        '3) (A & (A - (A - B))) | C  = {rez2}\n\n'
                        'Відповідь: {rez2}'
               .format(
-                    f1=(A - B),
+                    f1=(A & B),
                     rez1=(A & B | C),
-                    rez2=zad_alg.vyraz_1(A, B, C, U)),
+                    rez2=zad_alg.func_1(A, B, C)),
               font='Arial 14', justify=LEFT).grid(column=0, row=5, sticky=W, columnspan=4)
 
     def but_disable(event):
@@ -227,7 +227,7 @@ def window3():
           font="Arial 14", justify=LEFT).grid(column=0, row=1, sticky=W, columnspan=3)
 
     Label(slave, text='Заданий вираз:\n'
-                      'D = (A & (A - (A - B)) | C) = (A & B | C) = {}\n'.format(zad_alg.vyraz_1(A, B, C, U)),
+                      'D = (A & (A - (A - B)) | C) = (A & B | C) = {}\n'.format(zad_alg.func_1(A, B, C)),
           font='Arial 14 bold').grid(column=0, row=0, sticky=W, columnspan=2)
 
     Button(slave, text="Показати розв'язок", font="Arial 12",
@@ -235,7 +235,7 @@ def window3():
 
     but = Button(slave, text='Зберегти в файл', font='Arial 12')
     but.grid(column=1, row=3)
-    but.bind("<Button-1>", save_to_file(zad_alg.vyraz_1(A, B, C, U)))
+    but.bind("<Button-1>", save_to_file(zad_alg.func_1(A, B, C)))
     but.bind("<Button-1>", but_disable)
 
     photo = PhotoImage(file="photo.png")
@@ -251,8 +251,8 @@ def window4():
     slave_2.grab_set()
     slave_2.focus_set()
     # global Dx, Fx
-    # Dx = zad_alg.vyraz_1(A, B, C, U)
-    # Fx = gener_f(zad_alg.vyraz_1(A, B, C, U))
+    # Dx = zad_alg.func_1(A, B, C)
+    # Fx = gener_f(zad_alg.func_1(A, B, C))
 
     # def show():
     #     lf = LabelFrame(slave_2, text="Генерування", font='Arial 12')
@@ -275,7 +275,7 @@ def window4():
         .grid(column=0, row=0, sticky=W, columnspan=2)
 
     Button(slave_2, text="Показати розв'язок", font="Arial 12", command=show).grid(column=0, row=3)
-    but = Button(slave_2, text='Зберегти в файл', font='Arial 12', command=save_to_file(zad_alg.vyraz_2(A, B)))
+    but = Button(slave_2, text='Зберегти в файл', font='Arial 12', command=save_to_file(zad_alg.func_2(A, B)))
     but.grid(column=1, row=3)
     but.bind("<Button-1>", but_disable)
 
