@@ -206,16 +206,14 @@ def window3():
         lf = LabelFrame(slave, text="Розв'язок", font='Arial 12')
         lf.grid(column=0, row=5, columnspan=4)
         Label(lf, text='\n'
-                       '1) (A - B) = {f1}\n'
-                       '2) (A - (A - B)) = {f2}\n'
-                       '3) (A & (A - (A - B))) = {f3}\n'
-                       '4) (A & (A - (A - B))) | C  = {rez}\n\n'
-                       'Відповідь: {rez}'
+                       '1) (A & B) = {f1}\n'
+                       '2) (A & B) | C  = {rez1}\n'
+                       '3) (A & (A - (A - B))) | C  = {rez2}\n\n'
+                       'Відповідь: {rez2}'
               .format(
                     f1=(A - B),
-                    f2=(A - (A - B)),
-                    f3=(A & (A - (A - B))),
-                    rez=zad_alg.vyraz_1(A, B, C, U)),
+                    rez1=(A & B | C),
+                    rez2=zad_alg.vyraz_1(A, B, C, U)),
               font='Arial 14', justify=LEFT).grid(column=0, row=5, sticky=W, columnspan=4)
 
     def but_disable(event):
@@ -229,7 +227,7 @@ def window3():
           font="Arial 14", justify=LEFT).grid(column=0, row=1, sticky=W, columnspan=3)
 
     Label(slave, text='Заданий вираз:\n'
-                      'D = (A & (A - (A - B)) | C) = {}\n'.format(zad_alg.vyraz_1(A, B, C, U)),
+                      'D = (A & (A - (A - B)) | C) = (A & B | C) = {}\n'.format(zad_alg.vyraz_1(A, B, C, U)),
           font='Arial 14 bold').grid(column=0, row=0, sticky=W, columnspan=2)
 
     Button(slave, text="Показати розв'язок", font="Arial 12",
