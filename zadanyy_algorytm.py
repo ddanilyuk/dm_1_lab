@@ -16,6 +16,6 @@ def vyraz_1(A, B, C, U):
     return x
 
 
-def vyraz_2(F, D, U):
-    x = set(notX(F, U) | notX(D, U))
+def vyraz_2(A, B):
+    x = set(A & B)
     return x

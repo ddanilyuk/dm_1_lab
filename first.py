@@ -99,17 +99,17 @@ def generabc():
                                'U = {}'.format(A, B, C, U))
 
 
-def gener_f(x):
-    le = len(x)
-    s = set()
-    s.add(min(x))
-    s.add(max(x))
-
-    for i in range(le - 2):
-        s.add(random.randint(min(x), max(x)))
-    while len(s) < le:
-        s.add(random.randint(min(x), max(x)))
-    return s
+# def gener_f(x):
+#     le = len(x)
+#     s = set()
+#     s.add(min(x))
+#     s.add(max(x))
+#
+#     for i in range(le - 2):
+#         s.add(random.randint(min(x), max(x)))
+#     while len(s) < le:
+#         s.add(random.randint(min(x), max(x)))
+#     return s
 
 
 def vruchnu():
@@ -250,39 +250,38 @@ def window4():
     slave_2.title('Обчислення 2 виразу')
     slave_2.grab_set()
     slave_2.focus_set()
-    global Dx, Fx
-    Dx = zad_alg.vyraz_1(A, B, C, U)
-    Fx = gener_f(zad_alg.vyraz_1(A, B, C, U))
+    # global Dx, Fx
+    # Dx = zad_alg.vyraz_1(A, B, C, U)
+    # Fx = gener_f(zad_alg.vyraz_1(A, B, C, U))
+
+    # def show():
+    #     lf = LabelFrame(slave_2, text="Генерування", font='Arial 12')
+    #     lf.grid(column=0, row=6, sticky=W, columnspan=4)
+    #     Label(lf, text='F = {d}\n'.format(d=Fx),
+    #           font='Arial 14', justify=LEFT, width=100, height=5).grid(column=0, row=6, sticky=W, columnspan=4)
 
     def show():
-        lf = LabelFrame(slave_2, text="Генерування", font='Arial 12')
-        lf.grid(column=0, row=6, sticky=W, columnspan=4)
-        Label(lf, text='F = {d}\n'.format(d=Fx),
-              font='Arial 14', justify=LEFT, width=75, height=5).grid(column=0, row=6, sticky=W, columnspan=4)
-
-    def show_2():
         lf = LabelFrame(slave_2, text="Розв'язок", font='Arial 12')
         lf.grid(column=0, row=7, sticky=W, columnspan=4)
-        Label(lf, text='X = {d}\n'.format(d=zad_alg.vyraz_2(Fx, Dx, U)),
-              font='Arial 14', justify=LEFT, width=75, height=5).grid(column=0, row=7, sticky=W, columnspan=4)
+        Label(lf, text='Z = {d}\n'.format(d=A | B),
+              font='Arial 14', justify=LEFT, width=87, height=5).grid(column=0, row=7, sticky=W, columnspan=4)
 
     def but_disable(event):
         print(event)
         but['text'] = 'Збережено'
         but['state'] = DISABLED
 
-    Label(slave_2, text='Множина:\n''D = {}'.format(Dx), font='Arial 14 bold') \
-        .grid(column=0, row=0, sticky=W, columnspan=4)
+    Label(slave_2, text='Множина:\n''X = {A}\n''Y = {B}'.format(A=A, B=B), font='Arial 14 bold') \
+        .grid(column=0, row=0, sticky=W, columnspan=2)
 
-    Button(slave_2, text="Генерувати F", font="Arial 12", command=show).grid(column=0, row=3)
-    Button(slave_2, text="Показати розв'язок", font="Arial 12", command=show_2).grid(column=0, row=4)
-    but = Button(slave_2, text='Зберегти в файл', font='Arial 12', command=save_to_file(zad_alg.vyraz_2(Fx, Dx, U)))
-    but.grid(column=1, row=4)
+    Button(slave_2, text="Показати розв'язок", font="Arial 12", command=show).grid(column=0, row=3)
+    but = Button(slave_2, text='Зберегти в файл', font='Arial 12', command=save_to_file(zad_alg.vyraz_2(A, B)))
+    but.grid(column=1, row=3)
     but.bind("<Button-1>", but_disable)
 
     photo = PhotoImage(file="photo_2_v2.png")
     photo_but = Button(slave_2, activebackground="green")
-    photo_but.config(image=photo, width="250", height="60")
+    photo_but.config(image=photo, width="700", height="90")
     photo_but.grid(column=0, row=5, columnspan=2)
     slave_2.mainloop()
 
@@ -327,11 +326,11 @@ Label(root, text='Потужність A:').grid(column=3, row=3, sticky=E)
 Label(root, text='Потужність B:').grid(column=3, row=4, sticky=E)
 Label(root, text='Потужність C:').grid(column=3, row=5, sticky=E)
 
-lenA = Entry(root, width=10, bd=3, state=NORMAL)
+lenA = Entry(root, width=10, bd=3, state=DISABLED)
 lenA.grid(column=4, row=3, sticky=W)
-lenB = Entry(root, width=10, bd=3, state=NORMAL)
+lenB = Entry(root, width=10, bd=3, state=DISABLED)
 lenB.grid(column=4, row=4, sticky=W)
-lenC = Entry(root, width=10, bd=3, state=NORMAL)
+lenC = Entry(root, width=10, bd=3, state=DISABLED)
 lenC.grid(column=4, row=5, sticky=W)
 Label(root, text='Задати універсальну множину', font="Arial 14", width=30, height=2, justify=LEFT) \
     .grid(column=0, row=6, columnspan=3)
