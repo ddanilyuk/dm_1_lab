@@ -280,9 +280,8 @@ def window5():
     d1 = f2.read()
     d2 = f3.read()
     z1 = f4.read()
-    z2 = zad_alg.func_3(A, B)
+    z2 = str(A & B)
 
-    # todo edit rez_2 or z2
     rez1 = 'Результати сходяться' if d1 == d2 else 'Помилка в обчисленні'
     rez2 = 'Результати сходяться' if z1 == z2 else 'Помилка в обчисленні'
 
