@@ -13,7 +13,7 @@ def student():
     Label(slave, text='Данилюк Денис\n'
                       'група ІВ-82\n'
                       'варіант 2\n'
-                      '((8+82%60)%30)+1',
+                      '((8+82%60)%30)+1 = {}'.format(((8 + 82 % 60) % 30) + 1),
           justify=LEFT, font="Arial 14").pack(fill='both')
 
 
@@ -144,15 +144,17 @@ def window2():
         lf.grid(column=0, row=5, columnspan=4)
         Label(lf, text='\n'
                        '1) (A - B) = {f1}\n'
-                       '2) (A - (A - B)) = {f2}\n'
-                       '3) (A & (A - (A - B))) = {f3}\n'
-                       '4) (A & (A - (A - B))) | C)  = {rez}\n\n'
+                       '2) (B & A) = {f2}\n'
+                       '3) (C | B) = {f3}\n'
+                       '4) (A - B) | (B & A) = {f4}\n'
+                       '5) ((A - B) | (B & A)) - (C | B)  = {rez}\n\n'
                        'Відповідь: {rez}'
               .format(
                     f1=(A - B),
-                    f2=(A - (A - B)),
-                    f3=(A & (A - (A - B))),
-                    rez=zad_alg.func_1(A, B, C)),
+                    f2=(B & A),
+                    f3=(C | B),
+                    f4=(A - B) | (B & A),
+                    rez=zad_alg.func_1_full(A, B, C)),
               font='Arial 14', justify=LEFT).grid(column=0, row=5, sticky=W, columnspan=4)
 
     def but_disable(event):
@@ -166,7 +168,7 @@ def window2():
           font="Arial 14", justify=LEFT).grid(column=0, row=1, sticky=W, columnspan=3)
 
     Label(slave, text='Заданий вираз:\n'
-                      'D = (A & (A - (A - B)) | C) = {}\n'.format(zad_alg.func_1(A, B, C)),
+                      'D = ((A - B) | (B & A)) - (C | B) = {}\n'.format(zad_alg.func_1_full(A, B, C)),
           font='Arial 14 bold').grid(column=0, row=0, sticky=W, columnspan=2)
 
     Button(slave, text="Показати розв'язок", font="Arial 12",
@@ -176,7 +178,7 @@ def window2():
 
     but.grid(column=1, row=3)
 
-    but.bind("<Button-1>", save_to_file_2(zad_alg.func_1(A, B, C)))
+    but.bind("<Button-1>", save_to_file_2(zad_alg.func_1_full(A, B, C)))
     but.bind("<Button-1>", but_disable)
 
     photo = PhotoImage(file="photo.png")
@@ -196,14 +198,12 @@ def window3():
         lf = LabelFrame(slave, text="Розв'язок", font='Arial 12')
         lf.grid(column=0, row=5, columnspan=4)
         Label(lf, text='\n'
-                       '1) (A & B) = {f1}\n'
-                       '2) (A & B) | C  = {rez1}\n'
-                       '3) (A & (A - (A - B))) | C  = {rez2}\n\n'
-                       'Відповідь: {rez2}'
+                       '1) (С | B) = {f1}\n'
+                       '2) A - (C | B)  = {rez1}\n\n'
+                       'Відповідь: {rez1}'
               .format(
-                    f1=(A & B),
-                    rez1=(A & B | C),
-                    rez2=zad_alg.func_1(A, B, C)),
+                    f1=(C | B),
+                    rez1=zad_alg.func_1_small(A, B, C)),
               font='Arial 14', justify=LEFT).grid(column=0, row=5, sticky=W, columnspan=4)
 
     def but_disable(event):
@@ -217,7 +217,7 @@ def window3():
           font="Arial 14", justify=LEFT).grid(column=0, row=1, sticky=W, columnspan=3)
 
     Label(slave, text='Заданий вираз:\n'
-                      'D = (A & (A - (A - B)) | C) = (A & B | C) = {}\n'.format(zad_alg.func_1(A, B, C)),
+                      'D = (A - (C | B)) = {}\n'.format(zad_alg.func_1_small(A, B, C)),
           font='Arial 14 bold').grid(column=0, row=0, sticky=W, columnspan=2)
 
     Button(slave, text="Показати розв'язок", font="Arial 12",
@@ -225,7 +225,7 @@ def window3():
 
     but = Button(slave, text='Зберегти в файл', font='Arial 12')
     but.grid(column=1, row=3)
-    but.bind("<Button-1>", save_to_file_3(zad_alg.func_1(A, B, C)))
+    but.bind("<Button-1>", save_to_file_3(zad_alg.func_1_small(A, B, C)))
     but.bind("<Button-1>", but_disable)
 
     photo = PhotoImage(file="photo.png")
@@ -244,7 +244,7 @@ def window4():
     def show():
         lf = LabelFrame(slave_2, text="Розв'язок", font='Arial 12')
         lf.grid(column=0, row=7, sticky=W, columnspan=4)
-        Label(lf, text='Z = {d}\n'.format(d=A | B),
+        Label(lf, text='Z = {d}\n'.format(d=zad_alg.func_2_my(A, B)),
               font='Arial 14', justify=LEFT, width=87, height=5).grid(column=0, row=7, sticky=W, columnspan=4)
 
     def but_disable(event):
@@ -256,7 +256,7 @@ def window4():
         .grid(column=0, row=0, sticky=W, columnspan=2)
 
     Button(slave_2, text="Показати розв'язок", font="Arial 12", command=show).grid(column=0, row=3)
-    but = Button(slave_2, text='Зберегти в файл', font='Arial 12', command=save_to_file_4(zad_alg.func_2(A, B)))
+    but = Button(slave_2, text='Зберегти в файл', font='Arial 12', command=save_to_file_4(zad_alg.func_2_my(A, B)))
     but.grid(column=1, row=3)
     but.bind("<Button-1>", but_disable)
 
@@ -280,7 +280,7 @@ def window5():
     d1 = f2.read()
     d2 = f3.read()
     z1 = f4.read()
-    z2 = str(A & B)
+    z2 = str(A - B)
 
     rez1 = 'Результати сходяться' if d1 == d2 else 'Помилка в обчисленні'
     rez2 = 'Результати сходяться' if z1 == z2 else 'Помилка в обчисленні'
