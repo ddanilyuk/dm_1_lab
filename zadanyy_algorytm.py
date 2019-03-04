@@ -88,7 +88,6 @@ def sym_dif(a, b):
 
 
 def no_set(A, U):
-    """Другим аргументом передавати уныверсальну множину"""
     U = list(U)
     A = list(A)
     C = []
@@ -99,4 +98,12 @@ def no_set(A, U):
                 q = 1
         if q == 0:
             C.append(i)
-    return C
+    return set(C)
+
+
+def notX(X, U):
+    nX = set(U)
+    for elem in X:
+        if elem in nX:
+            nX.remove(elem)
+    return nX
