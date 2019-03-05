@@ -33,17 +33,14 @@ def func_2_python(A, B):
 # other functions #
 ###################
 def crossing(A, B):
-    a = list(A)
-    b = list(B)
-    c = b.copy()
-    for i in a:
-        q = 0
-        for j in b:
-            if i == j:
-                q = 1
-        if q == 0:
-            c.append(i)
-    return set(c)
+    A = list(A)
+    B = list(B)
+    C = []
+    for j in range(len(A)):
+        for i in range(len(B)):
+            if A[j] == B[i]:
+                C.append(A[j])
+    return set(C)
 
 
 def difference(A, B):
