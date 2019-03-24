@@ -25,7 +25,7 @@ def func_2_my(A, B):
 
 
 def func_2_python(A, B):
-    x = set(A & B)
+    x = set(A - B)
     return x
 
 
